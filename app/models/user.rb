@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX},
                     uniqueness: { case_sensitive: false}
 
-  validates :description, length: { maximum: 200 }, presence: true
-  validates :place, length: { maximum: 100 }, presence: true
-  validates :url, length: { maximum: 255 }, presence: true
+  validates :description, length: { maximum: 200 }, presence: true, on: :update
+  validates :place, length: { maximum: 100 }, presence: true, on: :update
+  validates :url, length: { maximum: 255 }, presence: true, on: :update
   VALID_DATE_REGEX = /(\d{4})?-(\d{2})-?(\d{2})/
-  validates :birthday, format: { with: VALID_DATE_REGEX }, presence: true
+  validates :birthday, format: { with: VALID_DATE_REGEX }, presence: true, on: :update
 
   has_secure_password
 
