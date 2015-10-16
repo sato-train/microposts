@@ -7,5 +7,8 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX},
                     uniqueness: { case_sensitive: false}
   
+  #それぞれのユーザーは複数の投稿を持つことができる。
+  has_many :microposts
+  
   has_secure_password
 end
