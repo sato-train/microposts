@@ -2,3 +2,16 @@
   <%= gravatar_for @user %>
   <%= @user.name %>
 </h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <ul class="list-group">
+      <li class="list-group-item"><label>名前：</label><%= @user.name %></li>
+      <li class="list-group-item"><label>メールアドレス：</label><%= @user.email %></li>
+      <li class="list-group-item"><label>自己紹介：</label><%= @user.description %></li>
+      <li class="list-group-item"><label>場所：</label><%= @user.place %></li>
+      <li class="list-group-item"><label>ホームページ：</label><%= @user.url %></li>
+      <li class="list-group-item"><label>誕生日：</label><%= @user.birthday.to_s(:date) %></li>
+    </ul>  
+  </div>
+</div>
