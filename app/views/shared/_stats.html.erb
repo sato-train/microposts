@@ -1,17 +1,15 @@
 <%# userがnilでない（:プロファイルページ）の場合何もせず %>
 <%# nil（：Homeページ）の場合、現在のユーザーを設定 %>
 <% @user ||= current_user %>
-<div class="stats">
-  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
-      <%= @user.following_users.count %>
-    </strong>
-    following
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
-      <%= @user.follower_users.count %>
-    </strong>
-    followers
-  </a>
-</div>
+<a href="<%= following_user_path(@user) %>">
+  <strong id="following" class="stat">
+    <%= @user.following_users.count %>
+  </strong>
+  following
+</a>
+<a href="<%= followers_user_path(@user) %>">
+  <strong id="followers" class="stat">
+    <%= @user.follower_users.count %>
+  </strong>
+  followers
+</a>

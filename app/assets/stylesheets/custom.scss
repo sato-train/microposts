@@ -113,6 +113,22 @@ aside {
   section.user_info {
     margin-top: 20px;
   }
+  section.stat_info {
+    margin-top: 0px;
+    display: block;
+    a {
+      padding: 0 10px;
+      color: $gray-light;
+      border-left: 1px solid $gray-light;
+      &:first-child {
+        border: 0;
+        padding-left: 0;
+      }
+      &:hover {
+        color: #337ab7;
+      }
+    }
+  }
   section {
     padding: 10px 0;
     margin-top: 20px;
@@ -124,6 +140,11 @@ aside {
       display: block;
       margin-bottom: 3px;
       line-height: 1;
+    }
+    a {
+      &:hover {
+        text-decoration: none;
+      }
     }
     h1 {
       font-size: 1.4em;
@@ -188,5 +209,25 @@ span.picture {
   margin-top: 10px;
   input {
     border: 0;
+  }
+}
+
+/* users */
+.users {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    display: block;
+    margin-top: 5em;
+    padding-top: 0;
+ }
+ .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
   }
 }

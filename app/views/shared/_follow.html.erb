@@ -1,0 +1,10 @@
+<div class="media">
+  <div class="media-heaing">
+    <%= link_to gravatar_for(follow, size: 50), follow %>
+    <h1><%= follow.name %></h1>
+  </div>
+  <div class="media-body">
+    <span><%= link_to "view profile", follow %></span>
+    <span><%= pluralize(follow.microposts.count, "micropost") %></span>
+  </div>
+</div>

@@ -35,13 +35,12 @@ class User < ActiveRecord::Base
   has_many :follower_users, through: :follower_relationships, source: :follower
 
   # 他のユーザーをフォローする
-  # 感嘆符は、作成に失敗したら、例外を発生することを示す
-  def follow!(other_user)
+  def follow(other_user)
     following_relationships.create(followed_id: other_user.id)
   end
 
   # フォローしているユーザーをアンフォローする
-  def unfollow!(other_user)
+  def unfollow(other_user)
     following_relationships.find_by(followed_id: other_user.id).destroy
   end
 

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show,:edit,:update]
+  before_action :set_user, only: [:show,:following,:followers,:edit,:update]
 
   def show
     @microposts = @user.microposts
@@ -34,10 +34,16 @@ class UsersController < ApplicationController
     end
   end
   
-  def followings
+  def following
+    @title = "Following"
+    @users = @user.following_users
+    render 'show_follow'
   end
   
   def followers
+    @title = "Followers"
+    @users = @user.follower_users
+    render 'show_follow'
   end
   
   private
