@@ -6,7 +6,15 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   
   resources :sessions, only: [ :new, :create, :destroy]
-  resources :users
   resources :microposts
   resources :relationships, only: [:create, :destroy]
+  
+  resources :users do
+    #memberメソッドでユーザーidを含むURLにそのルートが応答できるようにする
+    member do
+      #following_user_user_pathで指定するのは見苦しいので、followingとしている
+      get :following, :followers
+    end
+  end
+  
 end

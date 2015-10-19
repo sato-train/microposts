@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
+  #source定義 --> following_users配列の元は、followed id の集合であることを明示している
   has_many :following_users, through: :following_relationships, source: :followed
   
   #あるユーザー（user）をフォローしている人
@@ -34,12 +35,13 @@ class User < ActiveRecord::Base
   has_many :follower_users, through: :follower_relationships, source: :follower
 
   # 他のユーザーをフォローする
-  def follow(other_user)
+  # 感嘆符は、作成に失敗したら、例外を発生することを示す
+  def follow!(other_user)
     following_relationships.create(followed_id: other_user.id)
   end
 
   # フォローしているユーザーをアンフォローする
-  def unfollow(other_user)
+  def unfollow!(other_user)
     following_relationships.find_by(followed_id: other_user.id).destroy
   end
 
@@ -47,4 +49,5 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following_users.include?(other_user)
   end
+
 end
