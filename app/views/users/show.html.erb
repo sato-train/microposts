@@ -21,6 +21,7 @@
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>) </h3>
+      <%= page_entries_info @microposts %>
       <ol class="microposts">
         <!--
         same as...
@@ -31,6 +32,7 @@
         -->
         <%= render @microposts %>
       </ol>
+      <%= paginate @microposts %>
     <% end %>
   </div>
 </div>

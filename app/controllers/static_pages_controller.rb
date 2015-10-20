@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
       #order(created_at: :desc)投稿日で並び替えを行っています
       #includes(:user)の部分は、つぶやきに含まれるユーザー情報をあらかじめ先読み
       #（プリロード）する処理を行うために用います
-      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc).page(params[:page])
     end
   end
 end
