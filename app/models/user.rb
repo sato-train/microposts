@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   
   before_save { self.email = email.downcase}
-
+  
   validates :name, presence: true, length: { maximum: 50 }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
                                     foreign_key: "followed_id",
                                     dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower
+
+  paginates_per 5  # 1ページあたり5項目表示
 
   # 他のユーザーをフォローする
   def follow(other_user)

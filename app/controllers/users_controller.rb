@@ -2,6 +2,10 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: [:show,:following,:followers,:edit,:update]
 
+  def index
+    @users = User.all.page(params[:page])
+  end
+
   def show
     @microposts = @user.microposts.page(params[:page])
   end
