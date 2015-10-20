@@ -34,6 +34,19 @@ class User < ActiveRecord::Base
                                     dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower
 
+
+  #あるユーザーが、お気に入りに登録しているつぶやき
+  has_many :user_micropost_relationships, class_name:  "Favorite",
+                                     foreign_key: "user_id",
+                                     dependent:   :destroy
+  has_many :user_favorits, through: :user_micropost_relationships, source: :micropost
+
+  #あるつぶやきを、お気に入りに登録している人
+  has_many :micropost_user_relationships, class_name:  "Favorite",
+                                     foreign_key: "micropost_id",
+                                     dependent:   :destroy
+  has_many :favorited_users, through: :micropost_user_relationships, source: :user
+  
   paginates_per 5  # 1ページあたり5項目表示
 
   # 他のユーザーをフォローする
@@ -53,5 +66,20 @@ class User < ActiveRecord::Base
 
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])
+  end
+  
+  # お気に入りを登録する
+  def favorite(id)
+    user_micropost_relationships.create(micropost_id: id)
+  end
+
+  # お気に入りを解除する
+  def unfavorite(id)
+    Favorite.find_by(id:id).destroy
+  end
+
+  # あるつぶやきを登録しているかどうか？
+  def favorited?(micropost)
+    user_favorits.include?(micropost)
   end
 end
