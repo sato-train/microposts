@@ -1,0 +1,14 @@
+<% if @user.microposts.any? %>
+  <%= page_entries_info @microposts %>
+  <ol class="microposts">
+    <!--
+    same as...
+    (1) render partial: 'microposts/micropost', collection:@microposts
+    (2) @microposts.each do |micropost|
+          render partial: 'microposts/micropost', locals: {micropost: micropost}
+        end
+    -->
+    <%= render @microposts %>
+  </ol>
+  <%= paginate @microposts %>
+<% end %>

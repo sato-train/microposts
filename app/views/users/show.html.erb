@@ -22,23 +22,29 @@
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-      <h3>
-        Microposts (<%= @user.microposts.count %>) 
-        Favorites (<%#= @user.favorites.count %>)
-      </h3>
-      <%= page_entries_info @microposts %>
-      <ol class="microposts">
-        <!--
-        same as...
-        (1) render partial: 'microposts/micropost', collection:@microposts
-        (2) @microposts.each do |micropost|
-              render partial: 'microposts/micropost', locals: {micropost: micropost}
-            end
-        -->
-        <%= render @microposts %>
-      </ol>
-      <%= paginate @microposts %>
-    <% end %>
+    <div>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#micropost" aria-controls="micropost" role="tab" data-toggle="tab">
+            Microposts (<%= @user.microposts.count %>)
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#favorite" aria-controls="favorite" role="tab" data-toggle="tab">
+            Favorites (<%= @user.user_favorits.count %>)
+          </a>
+        </li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="micropost">
+          <%= render 'list_micropost' %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="favorite">
+          <%= render 'list_favorite' %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

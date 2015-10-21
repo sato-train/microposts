@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @microposts = @user.microposts.page(params[:page])
+    @favorite_microposts = @user.user_favorits
   end
   
   def new
