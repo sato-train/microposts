@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
                                      dependent:   :destroy
   has_many :favorited_users, through: :micropost_user_relationships, source: :user
   
+  #kaminari Plugin Setting
   paginates_per 5  # 1ページあたり5項目表示
 
   # 他のユーザーをフォローする
