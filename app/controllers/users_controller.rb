@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show,:following,:followers,:edit,:update]
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.all
   end
   
   def show
