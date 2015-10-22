@@ -8,7 +8,7 @@
     <% end %>
   </span>  
   <span class="timestamp">
-    Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+    <%= t '.post_time', time_ago: time_ago_in_words(micropost.created_at) %>
     <% if current_user == micropost.user %>
       <%= link_to "delete", micropost, method: :delete, data: { confirm: "You sure?"} %>
       <%# resources: micropost と設定してあるため、上記のように書いても自動的にurlが生成される。%>
