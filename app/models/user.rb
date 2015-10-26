@@ -47,6 +47,18 @@ class User < ActiveRecord::Base
                                      dependent:   :destroy
   has_many :favorited_users, through: :micropost_user_relationships, source: :user
   
+  #あるユーザーが、リツイートしたつぶやき
+  has_many :user_retweet_relations, class_name: "Retweet",
+                                     foreign_key: "user_id",
+                                     dependent:   :destroy
+  has_many :user_retweets, through: :user_retweet_relations, source: :micropost
+  
+  #あるつぶやきをリツイートしている人
+  has_many :retweet_user_relations, class_name: "Retweet",
+                                     foreign_key: "micropost_id",
+                                     dependent:   :destroy
+  has_many :retweeted_users, through: :retweet_user_relations, source: :user
+  
   #kaminari Plugin Setting
   paginates_per 5  # 1ページあたり5項目表示
 
@@ -82,5 +94,20 @@ class User < ActiveRecord::Base
   # あるつぶやきを登録しているかどうか？
   def favorited?(micropost)
     user_favorits.include?(micropost)
+  end
+
+  # リツイートを登録する
+  def retweet(id)
+    user_retweet_relations.create(micropost_id: id)
+  end
+
+  # リツイートを解除する
+  def unretweet(id)
+    Retweet.find_by(id:id).destroy
+  end
+
+  # あるつぶやきをリツイートしているかどうか？
+  def retweeted?(micropost)
+    user_retweets.include?(micropost)
   end
 end

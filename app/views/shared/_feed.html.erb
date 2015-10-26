@@ -1,6 +1,7 @@
 <% if @feed_items.any? %>
 
-  <%= page_entries_info @feed_items %>
+  <%#= page_entries_info @feed_items %>
+  <!-- 日本語定義では正しく表示できない -->
 
   <ol class="microposts">
     <%= render @feed_items %>
@@ -9,4 +10,3 @@
   <%= paginate @feed_items %>
 
 <% end %>
-

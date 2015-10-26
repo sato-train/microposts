@@ -12,11 +12,11 @@ ja:
 
   views:
     pagination:
-      first: "&laquo; 最初"
-      last: "最後 &raquo;"
-      previous: "&lsaquo; 前"
-      next: "次 &rsaquo;"
-      truncate: "&hellip;"
+      first: '最初'
+      previous: '« 前'
+      next: '次 »'
+      last: '最後'
+      truncate: "..."
   helpers:
     page_entries_info:
       one_page:

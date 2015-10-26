@@ -16,6 +16,7 @@
     <% end %>
   </span>
   <span class="micropost-footer">
+    <%= render partial: 'microposts/retweet_form', locals: {micropost: micropost} %>
     <%= render partial: 'microposts/favorite_form', locals: {micropost: micropost} %>
   </span>
 </li>
