@@ -1,14 +1,29 @@
-<%= form_for @micropost, :html => {:multipart => true} do |f| %>
+<%= form_for(@micropost, :html => {:multipart => true}) do |f| %>
 
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    <%= f.text_area :content, placeholder: "Compose new micropost...", id:"content" %>
   </div>
 
   <p>
     <%= f.file_field :image %>
   </p>
 
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "Post", class: "btn btn-primary", id:"tweet-button" %>
 <% end %>
+
+<script>
+function checkContent() {
+  var disable_flag = true;
+  if ( $('#content').val().length > 0) {
+    disable_flag = false;
+  }
+  $('#tweet-button').prop("disabled",disable_flag);
+}
+
+$('#content').on('keyup',function(){
+  checkContent();
+});
+checkContent();
+</script>

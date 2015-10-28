@@ -3,7 +3,7 @@ ja:
   shared:
     error_messages:  # app/shared/_error_messages.html.erb
         form_header: "%{count}個のエラーがあります"
-  
+
   invalid_login: "ログインに失敗しました"
   
   microposts:

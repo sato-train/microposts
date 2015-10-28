@@ -14,10 +14,10 @@
       <%= f.label :password %>
       <%= f.password_field :password, class:'form-control' %>
 
-      <% if logged_in? %>
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class:'form-control' %>
 
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation, class:'form-control' %>
+      <% if logged_in? %>
   
         <%= f.label :birthday %>
         <%= f.date_field :birthday, class:'form-control' %>
